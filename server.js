@@ -11,8 +11,8 @@ var app = express();
 // Require all models
 var db = require("./models");
 
-var PORT = 3000;
-
+//var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 // Initialize Express
 var app = express();
 
@@ -146,5 +146,5 @@ app.get("/books/:categoryid",function(req,res){
 });
 // Listen on port 3000
 app.listen(PORT, function () {
-  console.log("App running on port 3000!");
+  console.log("App running on port" + PORT);
 });
