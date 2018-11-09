@@ -22,8 +22,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-// Connect to the Mongo DB
+if(process.env.MONGODB_URI){
+  mongoose.connect(process.env.MONGODB_URI);
+}
+else
+{
+  // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/fitToScrape", { useNewUrlParser: true });
+
+}
+
 
 //This route gets the categories of books from the website mentioned
 app.get("/scrape/category/:number", function (req, res) {
