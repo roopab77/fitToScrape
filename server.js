@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
 
+
 // Initialize Express
 var app = express();
 
@@ -144,7 +145,29 @@ app.get("/books/:categoryid",function(req,res){
     res.json(err);
   });
 });
+
+//This route saves all the comments and Notes for a book
+app.post("/notes/:bookid",function(req,res){
+  console.log("from notes"+ req);
+  db.Note.create(req)
+  .then(function(dbNote) {    
+    const bookId = req.params.bookid;
+      
+    return db.Books.findByIdAndUpdate(bookId);
+  })
+  .then(function(dbNote) {
+    // If the User was updated successfully, send it back to the client
+    res.json(dbNote);
+  })
+  .catch(function(err) {
+    // If an error occurs, send it back to the client
+    console.log(err);
+    res.json(err);
+  });
+});
 // Listen on port 3000
 app.listen(PORT, function () {
   console.log("App running on port" + PORT);
 });
+
+

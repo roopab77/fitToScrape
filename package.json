@@ -19,6 +19,7 @@
   "homepage": "https://github.com/roopab77/fitToScrape#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "bootpag": "^1.0.7",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.4",
     "mongojs": "^2.6.0",
