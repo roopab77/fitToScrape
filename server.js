@@ -63,27 +63,27 @@ app.get("/scrape/category/:number", function (req, res) {
  
 });
 
-// A GET route for scraping the echoJS website
-app.get("/scrape/book", function (req, res) {
+// // A GET route for scraping the echoJS website
+// app.get("/scrape/book", function (req, res) {
 
-  axios.get("https://www.goodreads.com/shelf/show/40k").then(function (response) {
-    var $ = cheerio.load(response.data);
-    $(".Updates .firstcol").each(function (i, element) {
-      var result = {};
-      result.title = $(element).children().attr("title");
-      result.link = $(element).children().children().attr("src");
-      console.log(result);
-      db.Books.create(result)
-        .then(function (dbBooks) {
-          console.log(dbBooks);
-        })
-        .catch(function (err) {
-          return res.json(err);
-        });
-    });
-    res.send("Scrape Complete");
-  });
-});
+//   axios.get("https://www.goodreads.com/shelf/show/40k").then(function (response) {
+//     var $ = cheerio.load(response.data);
+//     $(".Updates .firstcol").each(function (i, element) {
+//       var result = {};
+//       result.title = $(element).children().attr("title");
+//       result.link = $(element).children().children().attr("src");
+//       console.log(result);
+//       db.Books.create(result)
+//         .then(function (dbBooks) {
+//           console.log(dbBooks);
+//         })
+//         .catch(function (err) {
+//           return res.json(err);
+//         });
+//     });
+//     res.send("Scrape Complete");
+//   });
+// });
 
 //This route pulls all the books for the specific category and save them in the books collection
 app.get("/scrape/book/:link", function (req, res) {
